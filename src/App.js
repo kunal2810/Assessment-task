@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import Login from "./components/login/login"
+import Dashboard from './components/dashboard/dashboard';
 import './App.css';
+import {Routes , Route } from "react-router-dom" ;
+import {IntlProvider} from 'react-intl';
+import message_en from "./locales/en.json";
+import message_ar from "./locales/ar.json";
+import { useState } from "react";
+
+const messages = {
+  en: message_en,
+  ar: message_ar
+}
 
 function App() {
+  const [locale, setLocale] = useState('en');
+  const [message, setMessage] = useState(messages.en);
+
+  const changeLocale = (val) => {
+    setLocale(val);
+    setMessage(messages[val]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <IntlProvider messages={message} locale={locale}>
+      <Routes> 
+            <Route path="/" element={<Login changeLocale={changeLocale} />} /> 
+            <Route path="/dashboard" element={<Dashboard/> } /> 
+       </Routes> 
+       </IntlProvider>
     </div>
   );
 }

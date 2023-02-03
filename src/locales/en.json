@@ -1,0 +1,6 @@
+{
+    "signIn": "Sign In",
+    "email": "Email Address",
+    "password": "Password",
+    "validPassword": "Password should be between 8 - 15 characters (Alpha Number with at least one Capital Letter and 1 Special Character)"
+}
